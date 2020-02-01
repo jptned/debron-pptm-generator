@@ -1,0 +1,9 @@
+{
+  "name": "debron-pptm-generator",
+  "version": "1.0.0",
+  "dependencies": {
+    "ncp": "^2.0.0",
+    "replace-in-file": "^5.0.2",
+    "zip-a-folder": "0.0.10"
+  }
+}

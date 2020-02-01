@@ -1,0 +1,19 @@
+const slideTypes = {
+    welkom: 'slide1',
+    kerkdienstgemist: 'slide2',
+    parkeren: 'slide3',
+    titel: 'slide4',
+    liturgie: 'slide5',
+    votum: 'slide6',
+    notenbalk: 'slide7',
+    liedtekst: 'slide8',
+    bijbeltekst: 'slide9',
+    bijbeltekstKaal: 'slide10',
+    collecteOchtend: 'slide11',
+    collecteMiddag: 'slide11',
+    zegen: 'slide13',
+    totZiensMiddag: 'slide14',
+    totZiensOchtend: 'slide15',
+};
+
+exports.slideTypes = slideTypes;

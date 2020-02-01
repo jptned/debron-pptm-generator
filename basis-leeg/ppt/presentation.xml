@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:presentation xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" saveSubsetFonts="1" autoCompressPictures="0">
+    <p:sldMasterIdLst>
+        <p:sldMasterId id="2147483673" r:id="rId4"/>
+    </p:sldMasterIdLst>
+    <p:notesMasterIdLst>
+        <p:notesMasterId r:id="rId20"/>
+    </p:notesMasterIdLst>
+    <p:sldIdLst>
+        {{slides}}
+    </p:sldIdLst>
+    <p:sldSz cx="18288000" cy="11430000"/>
+    <p:notesSz cx="6858000" cy="9144000"/>
+    <p:custShowLst>
+        <p:custShow name="Vooraf" id="0">
+            <p:sldLst>
+                {{vooraf}}
+            </p:sldLst>
+        </p:custShow>
+    </p:custShowLst>
+    <p:defaultTextStyle>
+        <a:defPPr>
+            <a:defRPr lang="nl-NL"/>
+        </a:defPPr>
+        <a:lvl1pPr marL="0" algn="l" defTabSz="849066" rtl="0" eaLnBrk="1" latinLnBrk="0" hangingPunct="1">
+            <a:defRPr sz="3300" kern="1200">
+                <a:solidFill>
+                    <a:schemeClr val="tx1"/>
+                </a:solidFill>
+                <a:latin typeface="+mn-lt"/>
+                <a:ea typeface="+mn-ea"/>
+                <a:cs typeface="+mn-cs"/>
+            </a:defRPr>
+        </a:lvl1pPr>
+        <a:lvl2pPr marL="849066" algn="l" defTabSz="849066" rtl="0" eaLnBrk="1" latinLnBrk="0" hangingPunct="1">
+            <a:defRPr sz="3300" kern="1200">
+                <a:solidFill>
+                    <a:schemeClr val="tx1"/>
+                </a:solidFill>
+                <a:latin typeface="+mn-lt"/>
+                <a:ea typeface="+mn-ea"/>
+                <a:cs typeface="+mn-cs"/>
+            </a:defRPr>
+        </a:lvl2pPr>
+        <a:lvl3pPr marL="1698132" algn="l" defTabSz="849066" rtl="0" eaLnBrk="1" latinLnBrk="0" hangingPunct="1">
+            <a:defRPr sz="3300" kern="1200">
+                <a:solidFill>
+                    <a:schemeClr val="tx1"/>
+                </a:solidFill>
+                <a:latin typeface="+mn-lt"/>
+                <a:ea typeface="+mn-ea"/>
+                <a:cs typeface="+mn-cs"/>
+            </a:defRPr>
+        </a:lvl3pPr>
+        <a:lvl4pPr marL="2547198" algn="l" defTabSz="849066" rtl="0" eaLnBrk="1" latinLnBrk="0" hangingPunct="1">
+            <a:defRPr sz="3300" kern="1200">
+                <a:solidFill>
+                    <a:schemeClr val="tx1"/>
+                </a:solidFill>
+                <a:latin typeface="+mn-lt"/>
+                <a:ea typeface="+mn-ea"/>
+                <a:cs typeface="+mn-cs"/>
+            </a:defRPr>
+        </a:lvl4pPr>
+        <a:lvl5pPr marL="3396264" algn="l" defTabSz="849066" rtl="0" eaLnBrk="1" latinLnBrk="0" hangingPunct="1">
+            <a:defRPr sz="3300" kern="1200">
+                <a:solidFill>
+                    <a:schemeClr val="tx1"/>
+                </a:solidFill>
+                <a:latin typeface="+mn-lt"/>
+                <a:ea typeface="+mn-ea"/>
+                <a:cs typeface="+mn-cs"/>
+            </a:defRPr>
+        </a:lvl5pPr>
+        <a:lvl6pPr marL="4245331" algn="l" defTabSz="849066" rtl="0" eaLnBrk="1" latinLnBrk="0" hangingPunct="1">
+            <a:defRPr sz="3300" kern="1200">
+                <a:solidFill>
+                    <a:schemeClr val="tx1"/>
+                </a:solidFill>
+                <a:latin typeface="+mn-lt"/>
+                <a:ea typeface="+mn-ea"/>
+                <a:cs typeface="+mn-cs"/>
+            </a:defRPr>
+        </a:lvl6pPr>
+        <a:lvl7pPr marL="5094397" algn="l" defTabSz="849066" rtl="0" eaLnBrk="1" latinLnBrk="0" hangingPunct="1">
+            <a:defRPr sz="3300" kern="1200">
+                <a:solidFill>
+                    <a:schemeClr val="tx1"/>
+                </a:solidFill>
+                <a:latin typeface="+mn-lt"/>
+                <a:ea typeface="+mn-ea"/>
+                <a:cs typeface="+mn-cs"/>
+            </a:defRPr>
+        </a:lvl7pPr>
+        <a:lvl8pPr marL="5943463" algn="l" defTabSz="849066" rtl="0" eaLnBrk="1" latinLnBrk="0" hangingPunct="1">
+            <a:defRPr sz="3300" kern="1200">
+                <a:solidFill>
+                    <a:schemeClr val="tx1"/>
+                </a:solidFill>
+                <a:latin typeface="+mn-lt"/>
+                <a:ea typeface="+mn-ea"/>
+                <a:cs typeface="+mn-cs"/>
+            </a:defRPr>
+        </a:lvl8pPr>
+        <a:lvl9pPr marL="6792529" algn="l" defTabSz="849066" rtl="0" eaLnBrk="1" latinLnBrk="0" hangingPunct="1">
+            <a:defRPr sz="3300" kern="1200">
+                <a:solidFill>
+                    <a:schemeClr val="tx1"/>
+                </a:solidFill>
+                <a:latin typeface="+mn-lt"/>
+                <a:ea typeface="+mn-ea"/>
+                <a:cs typeface="+mn-cs"/>
+            </a:defRPr>
+        </a:lvl9pPr>
+    </p:defaultTextStyle>
+    <p:extLst>
+        <p:ext uri="{521415D9-36F7-43E2-AB2F-B90AF26B5E84}">
+            <p14:sectionLst xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main">
+                <p14:section name="Vooraf" id="{A8250137-5E8A-49E0-BE36-58E40020D5B5}">
+                    <p14:sldIdLst>
+                        {{section-vooraf}}
+                    </p14:sldIdLst>
+                </p14:section>
+                <p14:section name="Dienst" id="{C34D61AB-A379-437F-8241-C1DCA7447682}">
+                    <p14:sldIdLst>
+                        {{section-dienst}}
+                    </p14:sldIdLst>
+                </p14:section>
+            </p14:sectionLst>
+        </p:ext>
+        <p:ext uri="{EFAFB233-063F-42B5-8137-9DF3F51BA10A}">
+            <p15:sldGuideLst xmlns:p15="http://schemas.microsoft.com/office/powerpoint/2012/main">
+                <p15:guide id="1" orient="horz" pos="3600">
+                    <p15:clr>
+                        <a:srgbClr val="A4A3A4"/>
+                    </p15:clr>
+                </p15:guide>
+                <p15:guide id="2" pos="5760">
+                    <p15:clr>
+                        <a:srgbClr val="A4A3A4"/>
+                    </p15:clr>
+                </p15:guide>
+            </p15:sldGuideLst>
+        </p:ext>
+    </p:extLst>
+</p:presentation>
