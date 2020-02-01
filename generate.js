@@ -250,6 +250,12 @@ function createSlides() {
                 from: '{{vredegroet}}',
                 to: slide.vredegroet
             });
+        } else if (slide.type === slideTypes.zegen) {
+            replace.sync({
+                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                from: '{{titel}}',
+                to: slide.title
+            });
         }
     }
 }
