@@ -232,7 +232,7 @@
                                 <a:latin typeface="Century Gothic"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>Lezen: </a:t>
+                            <a:t>{{titel}}</a:t>
                         </a:r>
                         <a:r>
                             <a:rPr lang="nl-NL" sz="4000" dirty="0">
@@ -266,7 +266,7 @@
                                 <a:latin typeface="Century Gothic"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>Marcus 10 : 13 - 31</a:t>
+                            <a:t>{{tekst}}</a:t>
                         </a:r>
                         <a:endParaRPr lang="nl-NL" sz="4000" dirty="0">
                             <a:solidFill>

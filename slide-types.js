@@ -1,4 +1,4 @@
-const slideTypes = {
+exports.slideTypes = {
     welkom: 'slide1',
     kerkdienstgemist: 'slide2',
     parkeren: 'slide3',
@@ -16,4 +16,11 @@ const slideTypes = {
     totZiensOchtend: 'slide15',
 };
 
-exports.slideTypes = slideTypes;
+exports.partTypes = {
+    titel: 'titel',
+    votum: 'votum',
+    lied: 'lied',
+    bijbeltekst: 'bijbeltekst',
+    collecte: 'collecte',
+    zegen: 'zegen',
+};

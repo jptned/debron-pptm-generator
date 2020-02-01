@@ -85,6 +85,23 @@ function createSlides() {
                 from: '{{titel}}',
                 to: slide.title
             });
+        } else if (slide.type === slideTypes.bijbeltekst) {
+            if (slide.text) {
+                slide.title += ': ';
+            } else {
+                slide.text = '';
+            }
+
+            replace.sync({
+                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                from: '{{titel}}',
+                to: slide.title
+            });
+            replace.sync({
+                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                from: '{{tekst}}',
+                to: slide.text
+            });
         } else if (slide.type === slideTypes.notenbalk) {
             let text = "";
             text += `<a:r>
