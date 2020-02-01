@@ -207,6 +207,24 @@ function createSlides() {
                 from: '{{lied-titel}}',
                 to: text
             });
+        } else if (slide.type === slideTypes.collecteOchtend || slide.type === slideTypes.collecteMiddag) {
+            for (let i = 0; i < 4; i++) {
+                replace.sync({
+                    files: dest + '/ppt/slideLayouts/slideLayout4.xml',
+                    from: '{{collecte-gkv-' + i + '}}',
+                    to: slide.collectenGKv[i]
+                });
+            }
+
+            if (slide.type === slideTypes.collecteMiddag) {
+                for (let i = 0; i < 4; i++) {
+                    replace.sync({
+                        files: dest + '/ppt/slideLayouts/slideLayout4.xml',
+                        from: '{{collecte-ngk-' + i + '}}',
+                        to: slide.collectenNGK[i]
+                    });
+                }
+            }
         }
     }
 }

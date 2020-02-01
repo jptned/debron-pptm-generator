@@ -7,8 +7,8 @@ const expandable = [
     { type: partTypes.bijbeltekst }
 ];
 const ochtend = true;
-const collecteGKV = ['GKv 1', 'GKv 2', 'GKv 3', 'GKv 4'];
-const collecteNGK = ['NGK 1', 'NGK 2', 'NGK 3', 'NGK 4'];
+const collectenGKv = ['GKv 1', 'GKv 2', 'GKv 3', 'GKv 4'];
+const collectenNGK = ['NGK 1', 'NGK 2', 'NGK 3', 'NGK 4'];
 
 exports.slides = [
     { type: slideTypes.welkom, vooraf: true },
@@ -22,6 +22,8 @@ exports.slides = [
     { type: slideTypes.notenbalk, vooraf: false, title: 'Zingen', song: 'Lied 456', verses: [1, 2, 3], active: 4 },
     { type: slideTypes.notenbalk, vooraf: false, title: 'Zingen', song: 'Lied 789', verses: [1, 2], active: 2 },
     { type: slideTypes.notenbalk, vooraf: false, title: 'Zingen', song: 'Lied 0', verses: [1], active: 1 },
+    { type: slideTypes.collecteOchtend, title: 'Collecte', collectenGKv: collectenGKv },
+    { type: slideTypes.collecteMiddag, title: 'Collecte', collectenGKv: collectenGKv, collectenNGK: collectenNGK },
     { type: slideTypes.bijbeltekst, title: 'Lezen' },
     { type: slideTypes.totZiensOchtend, vooraf: false }
 ];

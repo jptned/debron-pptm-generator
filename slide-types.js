@@ -10,7 +10,7 @@ exports.slideTypes = {
     bijbeltekst: 'slide9',
     bijbeltekstKaal: 'slide10',
     collecteOchtend: 'slide11',
-    collecteMiddag: 'slide11',
+    collecteMiddag: 'slide12',
     zegen: 'slide13',
     totZiensMiddag: 'slide14',
     totZiensOchtend: 'slide15',

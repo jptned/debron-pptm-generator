@@ -273,7 +273,7 @@
                                 <a:ea typeface="+mn-ea"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>GKv</a:t>
+                            <a:t> GKv</a:t>
                         </a:r>
                         <a:endParaRPr kumimoji="0" lang="nl-NL" sz="7500" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
                             <a:ln>
@@ -462,7 +462,7 @@
                                 <a:ea typeface="+mn-ea"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>collecte: </a:t>
+                            <a:t> collecte: </a:t>
                         </a:r>
                         <a:r>
                             <a:rPr kumimoji="0" lang="nl-NL" sz="4000" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
@@ -485,7 +485,7 @@
                                 <a:ea typeface="+mn-ea"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>Kerk</a:t>
+                            <a:t>{{collecte-gkv-0}}</a:t>
                         </a:r>
                     </a:p>
                     <a:p>
@@ -573,7 +573,7 @@
                                 <a:ea typeface="+mn-ea"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>collecte: </a:t>
+                            <a:t> collecte: </a:t>
                         </a:r>
                         <a:r>
                             <a:rPr kumimoji="0" lang="nl-NL" sz="4000" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
@@ -596,7 +596,7 @@
                                 <a:ea typeface="+mn-ea"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>Rente en aflossing</a:t>
+                            <a:t>{{collecte-gkv-1}}</a:t>
                         </a:r>
                         <a:endParaRPr kumimoji="0" lang="nl-NL" sz="4000" b="0" i="1" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
                             <a:ln>
@@ -808,7 +808,7 @@
                                 <a:cs typeface="Century Gothic"/>
                                 <a:sym typeface="Gill Sans" charset="0"/>
                             </a:rPr>
-                            <a:t>collecte: </a:t>
+                            <a:t> collecte: </a:t>
                         </a:r>
                         <a:r>
                             <a:rPr kumimoji="0" lang="nl-NL" sz="3200" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
@@ -832,7 +832,7 @@
                                 <a:cs typeface="Century Gothic"/>
                                 <a:sym typeface="Gill Sans" charset="0"/>
                             </a:rPr>
-                            <a:t>Kerk</a:t>
+                            <a:t>{{collecte-gkv-2}}</a:t>
                         </a:r>
                     </a:p>
                     <a:p>
@@ -923,7 +923,7 @@
                                 <a:cs typeface="Century Gothic"/>
                                 <a:sym typeface="Gill Sans" charset="0"/>
                             </a:rPr>
-                            <a:t>collecte: </a:t>
+                            <a:t> collecte: </a:t>
                         </a:r>
                         <a:r>
                             <a:rPr kumimoji="0" lang="nl-NL" sz="3200" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
@@ -947,7 +947,7 @@
                                 <a:cs typeface="Century Gothic"/>
                                 <a:sym typeface="Gill Sans" charset="0"/>
                             </a:rPr>
-                            <a:t>Rente en aflossing</a:t>
+                            <a:t>{{collecte-gkv-3}}</a:t>
                         </a:r>
                     </a:p>
                     <a:p>
@@ -1230,7 +1230,7 @@
                                 <a:ea typeface="+mn-ea"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>collecte: </a:t>
+                            <a:t> collecte: </a:t>
                         </a:r>
                         <a:r>
                             <a:rPr kumimoji="0" lang="nl-NL" sz="4000" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
@@ -1253,7 +1253,7 @@
                                 <a:ea typeface="+mn-ea"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>Kerk 2</a:t>
+                            <a:t>{{collecte-ngk-0}}</a:t>
                         </a:r>
                     </a:p>
                     <a:p>
@@ -1341,7 +1341,7 @@
                                 <a:ea typeface="+mn-ea"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>collecte: </a:t>
+                            <a:t> collecte: </a:t>
                         </a:r>
                         <a:r>
                             <a:rPr kumimoji="0" lang="nl-NL" sz="4000" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
@@ -1364,7 +1364,7 @@
                                 <a:ea typeface="+mn-ea"/>
                                 <a:cs typeface="Century Gothic"/>
                             </a:rPr>
-                            <a:t>Pensioenvoorziening predikanten</a:t>
+                            <a:t>{{collecte-ngk-1}}</a:t>
                         </a:r>
                     </a:p>
                     <a:p>
@@ -1556,7 +1556,7 @@
                                 <a:cs typeface="Century Gothic"/>
                                 <a:sym typeface="Gill Sans" charset="0"/>
                             </a:rPr>
-                            <a:t>collecte: </a:t>
+                            <a:t> collecte: </a:t>
                         </a:r>
                         <a:r>
                             <a:rPr kumimoji="0" lang="nl-NL" sz="3200" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
@@ -1580,7 +1580,7 @@
                                 <a:cs typeface="Century Gothic"/>
                                 <a:sym typeface="Gill Sans" charset="0"/>
                             </a:rPr>
-                            <a:t>Kerk</a:t>
+                            <a:t>{{collecte-ngk-2}}</a:t>
                         </a:r>
                     </a:p>
                     <a:p>
@@ -1671,7 +1671,7 @@
                                 <a:cs typeface="Century Gothic"/>
                                 <a:sym typeface="Gill Sans" charset="0"/>
                             </a:rPr>
-                            <a:t>collecte: </a:t>
+                            <a:t> collecte: </a:t>
                         </a:r>
                         <a:r>
                             <a:rPr kumimoji="0" lang="nl-NL" sz="3200" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
@@ -1695,7 +1695,7 @@
                                 <a:cs typeface="Century Gothic"/>
                                 <a:sym typeface="Gill Sans" charset="0"/>
                             </a:rPr>
-                            <a:t>Hoi</a:t>
+                            <a:t>{{collecte-ngk-3}}</a:t>
                         </a:r>
                     </a:p>
                 </p:txBody>
