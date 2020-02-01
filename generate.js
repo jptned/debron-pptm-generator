@@ -207,7 +207,21 @@ function createSlides() {
                 from: '{{lied-titel}}',
                 to: text
             });
-        } else if (slide.type === slideTypes.collecteOchtend || slide.type === slideTypes.collecteMiddag) {
+        } else if (slide.type === slideTypes.collecteOchtend) {
+            for (let i = 0; i < 4; i++) {
+                replace.sync({
+                    files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                    from: '{{collecte-' + i + '}}',
+                    to: slide.collectenGKv[i]
+                });
+            }
+
+            replace.sync({
+                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                from: '{{titel}}',
+                to: slide.title,
+            });
+        } else if ( slide.type === slideTypes.collecteMiddag) {
             for (let i = 0; i < 4; i++) {
                 replace.sync({
                     files: dest + '/ppt/slideLayouts/slideLayout4.xml',
@@ -225,6 +239,17 @@ function createSlides() {
                     });
                 }
             }
+        } else if (slide.type === slideTypes.votum) {
+            replace.sync({
+                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                from: '{{titel}}',
+                to: slide.title
+            });
+            replace.sync({
+                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                from: '{{vredegroet}}',
+                to: slide.vredegroet
+            });
         }
     }
 }

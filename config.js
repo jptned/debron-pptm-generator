@@ -10,12 +10,26 @@ const ochtend = true;
 const collectenGKv = ['GKv 1', 'GKv 2', 'GKv 3', 'GKv 4'];
 const collectenNGK = ['NGK 1', 'NGK 2', 'NGK 3', 'NGK 4'];
 
+// Mapping functions
+function mapToSlide(part) {
+    switch (part.type) {
+        case partTypes.titel:
+            break;
+        case partTypes.lied:
+            break;
+        case partTypes.bijbeltekst:
+            break;
+    }
+}
+
+// Map it
 exports.slides = [
     { type: slideTypes.welkom, vooraf: true },
     { type: slideTypes.liturgie, vooraf: true },
     { type: slideTypes.kerkdienstgemist, vooraf: true },
     { type: slideTypes.parkeren, vooraf: true },
     { type: slideTypes.titel, vooraf: false, title: 'Welkom en mededelingen' },
+    { type: slideTypes.votum, title: 'Votum en vredegroeten', vredegroet: 'Groet' },
     { type: slideTypes.notenbalk, vooraf: false, title: 'Zingen', song: 'Lied 123', verses: [1, 2, 4], active: 1 },
     { type: slideTypes.notenbalk, vooraf: false, title: 'Zingen', song: 'Lied 123', verses: [1, 2, 4], active: 2 },
     { type: slideTypes.notenbalk, vooraf: false, title: 'Zingen', song: 'Lied 123', verses: [1, 2, 4], active: 4 },
