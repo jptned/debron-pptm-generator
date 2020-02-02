@@ -1,27 +1,26 @@
 const {slideTypes, partTypes} = require('./slide-types');
 
-exports.thema = 'Ra, ra, wie ben ik?';
+exports.thema = ' ';
 const expandable = [
     {type: partTypes.titel, title: 'Welkom'},
-    {type: partTypes.lied, song: '\'Votum en groet\''},
-    {type: partTypes.lied, song: '\'Met open armen\''},
-    {type: partTypes.lied, song: '\'In U weet ik wie ik ben\''},
-    {type: partTypes.bijbeltekst, title: 'Wetslezing', text: 'Galaten 5 : 13 - 25'},
-    {type: partTypes.lied, song: 'Opwekking 811', verses: [1, 2]},
+    {type: partTypes.lied, song: 'Opwekking 640', verses: [1, 2]},
+    {type: partTypes.titel, title: 'Stil gebed'},
+    {type: partTypes.votum},
+    {type: partTypes.lied, song: 'Opwekking 281 en Psalm 42 : 5 (oude ber.)'},
     {type: partTypes.titel, title: 'Gebed'},
-    {type: partTypes.lied, song: 'Kinderopwekking 77'},
-    {type: partTypes.titel, title: 'Kindermoment'},
-    {type: partTypes.bijbeltekst, title: 'Tekst', text: 'Genesis 26 : 34 - 27 : 41'},
-    {type: partTypes.lied, song: 'DNP Psalm 36', verses: [1]},
+    {type: partTypes.bijbeltekst, text: 'Daniël 3 : 1 - 18'},
+    {type: partTypes.lied, song: 'Lied 329', verses: [1, 2, 3]},
     {type: partTypes.titel, title: 'Verkondiging'},
-    {type: partTypes.lied, song: 'Opwekking 599', verses: [1, 2, 3]},
+    {type: partTypes.lied, song: 'Psalm 42', verses: [5]},
     {type: partTypes.titel, title: 'Gebed'},
     {type: partTypes.collecte},
-    {type: partTypes.lied, song: 'Opwekking 710', verses: [1, 2]},
+    {type: partTypes.lied, song: 'Lied 409', verses: [1, 3]},
+    {type: partTypes.titel, title: 'Geloofsbelijdenis'},
+    {type: partTypes.lied, song: 'Lied 409', verses: [4]},
     {type: partTypes.titel, title: 'Zegen'},
-    {type: partTypes.lied, title: 'Amen', song: 'Lied 456', verses: [4]},
+    {type: partTypes.lied, title: 'Amenlied', song: 'Lied 409', verses: [5]},
 ];
-const ochtend = true;
+const ochtend = false;
 const collectenGKv = ['Diaconie', 'Rente en aflossing', 'Jeugdbeleid', 'Rente en aflossing'];
 const collectenNGK = ['NGK 1', 'NGK 2', 'NGK 3', 'NGK 4'];
 
