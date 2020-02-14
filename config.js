@@ -1,31 +1,7 @@
 const {slideTypes, partTypes} = require('./slide-types');
 
-exports.thema = ' ';
-const expandable = [
-    {type: partTypes.titel, title: 'Welkom'},
-    {type: partTypes.lied, song: 'Opwekking 640', verses: [1, 2]},
-    {type: partTypes.titel, title: 'Stil gebed'},
-    {type: partTypes.votum},
-    {type: partTypes.lied, song: 'Opwekking 281 en Psalm 42 : 5 (oude ber.)'},
-    {type: partTypes.titel, title: 'Gebed'},
-    {type: partTypes.bijbeltekst, text: 'Daniël 3 : 1 - 18'},
-    {type: partTypes.lied, song: 'Lied 329', verses: [1, 2, 3]},
-    {type: partTypes.titel, title: 'Verkondiging'},
-    {type: partTypes.lied, song: 'Psalm 42', verses: [5]},
-    {type: partTypes.titel, title: 'Gebed'},
-    {type: partTypes.collecte},
-    {type: partTypes.lied, song: 'Lied 409', verses: [1, 3]},
-    {type: partTypes.titel, title: 'Geloofsbelijdenis'},
-    {type: partTypes.lied, song: 'Lied 409', verses: [4]},
-    {type: partTypes.titel, title: 'Zegen'},
-    {type: partTypes.lied, title: 'Amenlied', song: 'Lied 409', verses: [5]},
-];
-const ochtend = false;
-const collectenGKv = ['Diaconie', 'Rente en aflossing', 'Jeugdbeleid', 'Rente en aflossing'];
-const collectenNGK = ['NGK 1', 'NGK 2', 'NGK 3', 'NGK 4'];
-
 // Mapping functions
-function mapToSlide(part) {
+function mapToSlide(part, ochtend, collectenGKv, collectenNGK) {
     switch (part.type) {
         case partTypes.titel:
             return [{type: slideTypes.titel, title: part.title}];
@@ -54,8 +30,8 @@ function mapToSlide(part) {
     }
 }
 
-function mapWithEmpty(part) {
-    return [{type: slideTypes.liturgie}, ...mapToSlide(part)];
+function mapWithEmpty(part, ochtend, collectenGKv, collectenNGK) {
+    return [{type: slideTypes.liturgie}, ...mapToSlide(part, ochtend, collectenGKv, collectenNGK)];
 }
 
 function mapToLiturgie(part) {
@@ -92,14 +68,21 @@ function mapToLiturgie(part) {
 }
 
 // Map it
-exports.slides = [
-    {type: slideTypes.welkom, vooraf: true},
-    {type: slideTypes.liturgie, vooraf: true},
-    {type: slideTypes.kerkdienstgemist, vooraf: true},
-    {type: slideTypes.parkeren, vooraf: true},
-    ...expandable.flatMap(mapWithEmpty),
-    {type: ochtend ? slideTypes.totZiensOchtend : slideTypes.totZiensMiddag, vooraf: false}
-];
-exports.liturgie = [
-    ...expandable.flatMap(mapToLiturgie),
-];
+function createConfig(expandable, ochtend, thema, collectenGKv, collectenNGK) {
+    return {
+        thema: thema,
+        slides: [
+            {type: slideTypes.welkom, vooraf: true},
+            {type: slideTypes.liturgie, vooraf: true},
+            {type: slideTypes.kerkdienstgemist, vooraf: true},
+            {type: slideTypes.parkeren, vooraf: true},
+            ...expandable.flatMap(x => mapWithEmpty(x, ochtend, collectenGKv, collectenNGK)),
+            {type: ochtend ? slideTypes.totZiensOchtend : slideTypes.totZiensMiddag, vooraf: false}
+        ],
+        liturgie: [
+            ...expandable.flatMap(mapToLiturgie),
+        ]
+    };
+}
+
+exports.createConfig = createConfig;

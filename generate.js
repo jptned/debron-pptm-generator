@@ -1,21 +1,10 @@
 const ncp = require('ncp').ncp;
 const zipFolder = require('zip-a-folder');
 const fs = require('fs');
-const config = require('./config');
 const replace = require('replace-in-file');
 const {slideTypes} = require('./slide-types');
 
-// Add ID's to slids
-let id = 10;
-let index = 1;
-for (let slide of config.slides) {
-    slide.id = id;
-    slide.index = index;
-    id++;
-    index++;
-}
-
-function createSlideReferences() {
+function createSlideReferences(dest, config) {
     let slideRefs = "";
     for (const slide of config.slides) {
         slideRefs += '<Relationship Id="rId' + slide.id + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="slides/slide' + slide.index + '.xml"/>';
@@ -37,7 +26,7 @@ function createSlideReferences() {
     });
 }
 
-function createSlideMaster() {
+function createSlideMaster(dest, config) {
     replace.sync({
         files: dest + '/ppt/slideMasters/slideMaster1.xml',
         from: '{{Thema}}',
@@ -45,7 +34,7 @@ function createSlideMaster() {
     });
 }
 
-function createSections() {
+function createSections(dest, config) {
     let vooraf = "";
     let sectionVooraf = "";
     let sectionDienst = "";
@@ -74,7 +63,7 @@ function createSections() {
     });
 }
 
-function createSlides() {
+function createSlides(basis, dest, config) {
     for (const slide of config.slides) {
         fs.copyFileSync(basis + '/ppt/slides/' + slide.type + '.xml', dest + '/ppt/slides/slide' + slide.index + '.xml');
         fs.copyFileSync(basis + '/ppt/slides/_rels/' + slide.type + '.xml.rels', dest + '/ppt/slides/_rels/slide' + slide.index + '.xml.rels');
@@ -221,7 +210,7 @@ function createSlides() {
                 from: '{{titel}}',
                 to: slide.title,
             });
-        } else if ( slide.type === slideTypes.collecteMiddag) {
+        } else if (slide.type === slideTypes.collecteMiddag) {
             for (let i = 0; i < 4; i++) {
                 replace.sync({
                     files: dest + '/ppt/slideLayouts/slideLayout4.xml',
@@ -260,17 +249,18 @@ function createSlides() {
     }
 }
 
-function zip() {
-    const zipFilePath = './' + name + '.pptm';
+function zip(dest, callback) {
+    const zipFilePath = dest + '.pptm';
     zipFolder.zipFolder(dest, zipFilePath, function (err) {
         if (err) {
             console.log('Something went wrong!', err);
         }
-        console.log('done!');
+        fs.rmdirSync(dest, { recursive: true });
+        callback();
     });
 }
 
-function createSlideLayout() {
+function createSlideLayout(dest, config) {
     const rules = config.liturgie.map((item) => {
         return `
             <a:p>
@@ -302,24 +292,35 @@ function createSlideLayout() {
     });
 }
 
-// Copy folder
-ncp.limit = 16;
-const name = 'test-' + Math.round((new Date()).getTime() / 1000);
-const original = './basis-leeg';
-const basis = './basis';
-const dest = './' + name;
-
-ncp(original, dest, function (err) {
-    if (err) {
-        return console.error(err);
+function generatePresentation(config, name, callback) {
+    let id = 10;
+    let index = 1;
+    for (let slide of config.slides) {
+        slide.id = id;
+        slide.index = index;
+        id++;
+        index++;
     }
 
-    createSlides();
-    createSlideReferences();
-    createSlideMaster();
-    createSlideLayout();
-    createSections();
+    // Copy folder
+    ncp.limit = 16;
+    const original = './basis-leeg';
+    const basis = './basis';
+    const dest = './generated/' + name;
 
-    zip();
-});
+    ncp(original, dest, function (err) {
+        if (err) {
+            return console.error(err);
+        }
 
+        createSlides(basis, dest, config);
+        createSlideReferences(dest, config);
+        createSlideMaster(dest, config);
+        createSlideLayout(dest, config);
+        createSections(dest, config);
+
+        zip(dest, callback);
+    });
+}
+
+exports.generatePresentation = generatePresentation;
