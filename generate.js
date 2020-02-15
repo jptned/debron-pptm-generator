@@ -254,6 +254,7 @@ function zip(dest, callback) {
     zipFolder.zipFolder(dest, zipFilePath, function (err) {
         if (err) {
             console.log('Something went wrong!', err);
+            callback(err);
         }
         fs.rmdirSync(dest, { recursive: true });
         callback();
@@ -310,6 +311,7 @@ function generatePresentation(config, name, callback) {
 
     ncp(original, dest, function (err) {
         if (err) {
+            callback(err);
             return console.error(err);
         }
 

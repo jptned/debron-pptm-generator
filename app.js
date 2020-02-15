@@ -17,7 +17,8 @@ app.post('/generate', (req, res) => {
     const date = new Date(req.body.presentatie.date);
     const filename = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear() + ', ' + (req.body.presentatie.ochtend ? 'ochtend' : 'middag');
 
-    generatePresentation(config, filename, function() {
+    generatePresentation(config, filename, function(err) {
+        if (err) res.json(err);
         const filePath = path.join(__dirname, 'generated/' + filename + '.pptm');
         const stat = fileSystem.statSync(filePath);
 
