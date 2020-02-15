@@ -323,7 +323,7 @@ function generatePresentation(config, name, callback) {
         createSlideLayout(dest, config);
         createSections(dest, config);
 
-        zip(dest, callback);
+        zip(name, callback);
     });
 }
 
