@@ -19,7 +19,7 @@ app.post('/generate', (req, res) => {
 
     generatePresentation(config, filename, function(err) {
         if (err) {
-            res.json(err);
+            res.json('Something went wrong');
             return;
         }
         const filePath = path.join(__dirname, 'generated/' + filename + '.pptm');
