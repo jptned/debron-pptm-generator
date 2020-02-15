@@ -70,11 +70,6 @@ function createSlides(basis, dest, config, name, callback) {
         fs.mkdirSync(path.join(__dirname, 'generated/' + name + '/ppt/slides/_rels'));
         fs.copyFileSync(basis + '/ppt/slides/_rels/' + slide.type + '.xml.rels', dest + '/ppt/slides/_rels/slide' + slide.index + '.xml.rels');
         fs.copyFile(basis + '/ppt/slides/' + slide.type + '.xml', dest + '/ppt/slides/slide' + slide.index + '.xml', function (err) {
-            if (err) {
-                callback(err);
-                return;
-            }
-
             if (slide.type === slideTypes.titel) {
                 replace.sync({
                     files: dest + '/ppt/slides/slide' + slide.index + '.xml',
