@@ -322,7 +322,7 @@ function generatePresentation(config, name, callback) {
             return console.error(err);
         }
 
-        createSlides(basis, dest, config);
+        createSlides(basis, dest, config, callback);
         createSlideReferences(dest, config);
         createSlideMaster(dest, config);
         createSlideLayout(dest, config);
