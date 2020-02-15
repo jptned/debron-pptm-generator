@@ -8,7 +8,7 @@ function mapToSlide(part, ochtend, collectenGKv, collectenNGK) {
         case partTypes.votum:
             return [{type: slideTypes.votum, title: part.title || 'Votum en vredegroet', vredegroet: part.vredegroet || 'vredegroet'}];
         case partTypes.lied:
-            if (part.verses) {
+            if (part.verses.length) {
                 return part.verses.map((verse) => {
                     return {type: slideTypes.notenbalk, title: part.title || 'Zingen', song: part.song || '', verses: part.verses, active: verse};
                 });
@@ -54,7 +54,7 @@ function mapToLiturgie(part) {
                 if (part.song) title += ': ';
             }
             if (part.song) title += part.song;
-            if (part.verses) title += ' : ' + part.verses.join(', ');
+            if (part.verses.length) title += ' : ' + part.verses.join(', ');
             return [title];
         case partTypes.bijbeltekst:
             return [(part.title || 'Lezen') + (part.text ? ': ' + part.text : '')];
