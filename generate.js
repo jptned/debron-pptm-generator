@@ -66,6 +66,7 @@ function createSections(dest, config) {
 
 function createSlides(basis, dest, config, callback) {
     for (const slide of config.slides) {
+        callback(slide);
         fs.mkdirSync(basis + '/ppt/slides');
         fs.mkdirSync(basis + '/ppt/slides/_rels');
         fs.copyFileSync(basis + '/ppt/slides/_rels/' + slide.type + '.xml.rels', dest + '/ppt/slides/_rels/slide' + slide.index + '.xml.rels');
