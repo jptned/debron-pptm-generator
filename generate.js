@@ -64,9 +64,8 @@ function createSections(dest, config) {
     });
 }
 
-function createSlides(basis, dest, config, callback) {
+function createSlides(basis, dest, config, name, callback) {
     for (const slide of config.slides) {
-        callback(path.join(__dirname, 'generated/' + name + '/ppt/slides'));
         fs.mkdirSync(path.join(__dirname, 'generated/' + name + '/ppt/slides'));
         fs.mkdirSync(path.join(__dirname, 'generated/' + name + '/ppt/slides/_rels'));
         fs.copyFileSync(basis + '/ppt/slides/_rels/' + slide.type + '.xml.rels', dest + '/ppt/slides/_rels/slide' + slide.index + '.xml.rels');
@@ -325,7 +324,7 @@ function generatePresentation(config, name, callback) {
             return console.error(err);
         }
 
-        createSlides(basis, dest, config, callback);
+        createSlides(basis, dest, config, name, callback);
         createSlideReferences(dest, config);
         createSlideMaster(dest, config);
         createSlideLayout(dest, config);
