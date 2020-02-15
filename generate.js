@@ -3,6 +3,7 @@ const zipFolder = require('zip-a-folder');
 const fs = require('fs');
 const replace = require('replace-in-file');
 const {slideTypes} = require('./slide-types');
+const path = require('path');
 
 function createSlideReferences(dest, config) {
     let slideRefs = "";
@@ -249,9 +250,10 @@ function createSlides(basis, dest, config) {
     }
 }
 
-function zip(dest, callback) {
-    const zipFilePath = dest + '.pptm';
-    zipFolder.zipFolder(dest, zipFilePath, function (err) {
+function zip(name, callback) {
+    const filePath = path.join(__dirname, 'generated/' + name + '.pptm');
+    const dest = path.join(__dirname, 'generated/' + name);
+    zipFolder.zipFolder(dest, filePath, function (err) {
         if (err) {
             console.log('Something went wrong!', err);
             callback(err);
