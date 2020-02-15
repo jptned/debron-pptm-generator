@@ -64,37 +64,41 @@ function createSections(dest, config) {
     });
 }
 
-function createSlides(basis, dest, config) {
+function createSlides(basis, dest, config, callback) {
     for (const slide of config.slides) {
-        fs.copyFileSync(basis + '/ppt/slides/' + slide.type + '.xml', dest + '/ppt/slides/slide' + slide.index + '.xml');
         fs.copyFileSync(basis + '/ppt/slides/_rels/' + slide.type + '.xml.rels', dest + '/ppt/slides/_rels/slide' + slide.index + '.xml.rels');
-
-        if (slide.type === slideTypes.titel) {
-            replace.sync({
-                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
-                from: '{{titel}}',
-                to: slide.title
-            });
-        } else if (slide.type === slideTypes.bijbeltekst) {
-            if (slide.text) {
-                slide.title += ': ';
-            } else {
-                slide.text = '';
+        fs.copyFile(basis + '/ppt/slides/' + slide.type + '.xml', dest + '/ppt/slides/slide' + slide.index + '.xml', function (err) {
+            if (err) {
+                callback(err);
+                return;
             }
 
-            replace.sync({
-                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
-                from: '{{titel}}',
-                to: slide.title
-            });
-            replace.sync({
-                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
-                from: '{{tekst}}',
-                to: slide.text
-            });
-        } else if (slide.type === slideTypes.notenbalk) {
-            let text = "";
-            text += `<a:r>
+            if (slide.type === slideTypes.titel) {
+                replace.sync({
+                    files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                    from: '{{titel}}',
+                    to: slide.title
+                });
+            } else if (slide.type === slideTypes.bijbeltekst) {
+                if (slide.text) {
+                    slide.title += ': ';
+                } else {
+                    slide.text = '';
+                }
+
+                replace.sync({
+                    files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                    from: '{{titel}}',
+                    to: slide.title
+                });
+                replace.sync({
+                    files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                    from: '{{tekst}}',
+                    to: slide.text
+                });
+            } else if (slide.type === slideTypes.notenbalk) {
+                let text = "";
+                text += `<a:r>
                 <a:rPr kumimoji="0" lang="nl-NL" sz="4000" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0" noProof="0" dirty="0">
                     <a:ln>
                         <a:noFill/>
@@ -114,8 +118,8 @@ function createSlides(basis, dest, config) {
                 </a:rPr>
                 <a:t>${slide.title + (slide.song.length ? ': ' : '')}</a:t>
             </a:r>`;
-            if (slide.song.length) {
-                text += `<a:r>
+                if (slide.song.length) {
+                    text += `<a:r>
                     <a:rPr lang="nn-NO" sz="4000" dirty="0">
                         <a:solidFill>
                             <a:prstClr val="black">
@@ -128,26 +132,26 @@ function createSlides(basis, dest, config) {
                     </a:rPr>
                     <a:t>${slide.song + (slide.verses.length ? ' : ' : '')}</a:t>
                 </a:r>`;
-            }
-            if (slide.verses.length) {
-                let before = '';
-                let active = '';
-                let after = '';
-                const activeIndex = slide.verses.indexOf(slide.active);
-                if (activeIndex === -1) {
-                    before = slide.verses.join(', ');
-                } else {
-                    if (activeIndex !== 0) {
-                        before = slide.verses.slice(0, activeIndex).join(', ') + ', ';
-                    }
-                    active = slide.active;
-                    if (activeIndex !== slide.verses.length - 1) {
-                        after = ', ' + slide.verses.slice(activeIndex + 1).join(', ');
-                    }
                 }
+                if (slide.verses.length) {
+                    let before = '';
+                    let active = '';
+                    let after = '';
+                    const activeIndex = slide.verses.indexOf(slide.active);
+                    if (activeIndex === -1) {
+                        before = slide.verses.join(', ');
+                    } else {
+                        if (activeIndex !== 0) {
+                            before = slide.verses.slice(0, activeIndex).join(', ') + ', ';
+                        }
+                        active = slide.active;
+                        if (activeIndex !== slide.verses.length - 1) {
+                            after = ', ' + slide.verses.slice(activeIndex + 1).join(', ');
+                        }
+                    }
 
-                if (before) {
-                    text += `<a:r>
+                    if (before) {
+                        text += `<a:r>
                         <a:rPr lang="nn-NO" sz="4000" dirty="0">
                             <a:solidFill>
                                 <a:prstClr val="black">
@@ -160,10 +164,10 @@ function createSlides(basis, dest, config) {
                         </a:rPr>
                         <a:t>${before}</a:t>
                     </a:r>`;
-                }
+                    }
 
-                if (active) {
-                    text += `<a:r>
+                    if (active) {
+                        text += `<a:r>
                         <a:rPr lang="nn-NO" sz="4000" b="1" u="sng" dirty="0">
                             <a:solidFill>
                                 <a:srgbClr val="003E90"/>
@@ -173,10 +177,10 @@ function createSlides(basis, dest, config) {
                         </a:rPr>
                         <a:t>${active}</a:t>
                     </a:r>`;
-                }
+                    }
 
-                if (after) {
-                    text += `<a:r>
+                    if (after) {
+                        text += `<a:r>
                         <a:rPr lang="nn-NO" sz="4000" dirty="0">
                             <a:solidFill>
                                 <a:prstClr val="black">
@@ -189,64 +193,65 @@ function createSlides(basis, dest, config) {
                         </a:rPr>
                         <a:t>${after}</a:t>
                     </a:r>`;
+                    }
                 }
-            }
 
-            replace.sync({
-                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
-                from: '{{lied-titel}}',
-                to: text
-            });
-        } else if (slide.type === slideTypes.collecteOchtend) {
-            for (let i = 0; i < 4; i++) {
                 replace.sync({
                     files: dest + '/ppt/slides/slide' + slide.index + '.xml',
-                    from: '{{collecte-' + i + '}}',
-                    to: slide.collectenGKv[i]
+                    from: '{{lied-titel}}',
+                    to: text
                 });
-            }
+            } else if (slide.type === slideTypes.collecteOchtend) {
+                for (let i = 0; i < 4; i++) {
+                    replace.sync({
+                        files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                        from: '{{collecte-' + i + '}}',
+                        to: slide.collectenGKv[i]
+                    });
+                }
 
-            replace.sync({
-                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
-                from: '{{titel}}',
-                to: slide.title,
-            });
-        } else if (slide.type === slideTypes.collecteMiddag) {
-            for (let i = 0; i < 4; i++) {
                 replace.sync({
-                    files: dest + '/ppt/slideLayouts/slideLayout4.xml',
-                    from: '{{collecte-gkv-' + i + '}}',
-                    to: slide.collectenGKv[i]
+                    files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                    from: '{{titel}}',
+                    to: slide.title,
                 });
-            }
-
-            if (slide.type === slideTypes.collecteMiddag) {
+            } else if (slide.type === slideTypes.collecteMiddag) {
                 for (let i = 0; i < 4; i++) {
                     replace.sync({
                         files: dest + '/ppt/slideLayouts/slideLayout4.xml',
-                        from: '{{collecte-ngk-' + i + '}}',
-                        to: slide.collectenNGK[i]
+                        from: '{{collecte-gkv-' + i + '}}',
+                        to: slide.collectenGKv[i]
                     });
                 }
+
+                if (slide.type === slideTypes.collecteMiddag) {
+                    for (let i = 0; i < 4; i++) {
+                        replace.sync({
+                            files: dest + '/ppt/slideLayouts/slideLayout4.xml',
+                            from: '{{collecte-ngk-' + i + '}}',
+                            to: slide.collectenNGK[i]
+                        });
+                    }
+                }
+            } else if (slide.type === slideTypes.votum) {
+                replace.sync({
+                    files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                    from: '{{titel}}',
+                    to: slide.title
+                });
+                replace.sync({
+                    files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                    from: '{{vredegroet}}',
+                    to: slide.vredegroet
+                });
+            } else if (slide.type === slideTypes.zegen) {
+                replace.sync({
+                    files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                    from: '{{titel}}',
+                    to: slide.title
+                });
             }
-        } else if (slide.type === slideTypes.votum) {
-            replace.sync({
-                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
-                from: '{{titel}}',
-                to: slide.title
-            });
-            replace.sync({
-                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
-                from: '{{vredegroet}}',
-                to: slide.vredegroet
-            });
-        } else if (slide.type === slideTypes.zegen) {
-            replace.sync({
-                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
-                from: '{{titel}}',
-                to: slide.title
-            });
-        }
+        });
     }
 }
 
@@ -258,7 +263,7 @@ function zip(name, callback) {
             console.log('Something went wrong!', err);
             callback(err);
         }
-        fs.rmdirSync(dest, { recursive: true });
+        fs.rmdirSync(dest, {recursive: true});
         callback();
     });
 }
