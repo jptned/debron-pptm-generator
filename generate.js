@@ -295,6 +295,14 @@ function createSlideLayout(dest, config) {
     });
 }
 
+function createCustomization(dest, name) {
+    replace.sync({
+        files: dest + '/ppt/slideLayouts/slideLayout1.xml',
+        from: /{{name}}/g,
+        to: name
+    });
+}
+
 function generatePresentation(config, name, callback) {
     let id = 10;
     let index = 1;
@@ -322,6 +330,7 @@ function generatePresentation(config, name, callback) {
         createSlideMaster(dest, config);
         createSlideLayout(dest, config);
         createSections(dest, config);
+        createCustomization(dest, name);
 
         zip(name, callback);
     });
