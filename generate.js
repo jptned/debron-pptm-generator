@@ -4,6 +4,7 @@ const fs = require('fs');
 const replace = require('replace-in-file');
 const {slideTypes} = require('./slide-types');
 const path = require('path');
+const rmdir = require('rimraf');
 
 function createSlideReferences(dest, config) {
     let slideRefs = "";
@@ -257,7 +258,7 @@ function zip(name, callback) {
             console.log('Something went wrong!', err);
             callback(err);
         }
-        fs.rmdirSync(dest, {recursive: true});
+        rmdir.sync(dest);
         callback();
     });
 }
