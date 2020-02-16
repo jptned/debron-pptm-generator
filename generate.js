@@ -297,7 +297,7 @@ function createSlideLayout(dest, config) {
 
 function createCustomization(dest, name) {
     replace.sync({
-        files: dest + '/ppt/slideLayouts/slideLayout1.xml',
+        files: dest + '/userCustomization/customUI.xml',
         from: /{{name}}/g,
         to: name
     });
