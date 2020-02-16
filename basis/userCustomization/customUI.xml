@@ -2,11 +2,11 @@
     <mso:ribbon>
         <mso:qat>
             <mso:documentControls>
-                <mso:button idQ="doc:_12-1-2020__middag.pptm__Notenbalk_1" visible="true" label="Notenbalk" imageMso="DarkShading" onAction="!Notenbalk"/>
-                <mso:button idQ="doc:_12-1-2020__middag.pptm__Text_1" visible="true" label="Tekst" imageMso="ChangeCase" onAction="!Text"/>
-                <mso:button idQ="doc:_12-1-2020__middag.pptm__NonBoldText_1" visible="true" label="Subkop" imageMso="TableCellAlignTop" onAction="!NonBoldText"/>
-                <mso:button idQ="doc:_12-1-2020__middag.pptm__VersNummerAan_1" visible="true" label="Vers aan" imageMso="HeaderFooterPageNumberInsertExcel" onAction="!VersNummerAan"/>
-                <mso:button idQ="doc:_12-1-2020__middag.pptm__VersNummerUit_1" visible="true" label="Vers uit" imageMso="GroupHeaderFooterExcel" onAction="!VersNummerUit"/>
+                <mso:button idQ="doc:_12-1-2020__middag.pptm__Notenbalk_1" visible="true" label="Notenbalk" imageMso="DarkShading" onAction="Notenbalk"/>
+                <mso:button idQ="doc:_12-1-2020__middag.pptm__Text_1" visible="true" label="Tekst" imageMso="ChangeCase" onAction="Text"/>
+                <mso:button idQ="doc:_12-1-2020__middag.pptm__NonBoldText_1" visible="true" label="Subkop" imageMso="TableCellAlignTop" onAction="NonBoldText"/>
+                <mso:button idQ="doc:_12-1-2020__middag.pptm__VersNummerAan_1" visible="true" label="Vers aan" imageMso="HeaderFooterPageNumberInsertExcel" onAction="VersNummerAan"/>
+                <mso:button idQ="doc:_12-1-2020__middag.pptm__VersNummerUit_1" visible="true" label="Vers uit" imageMso="GroupHeaderFooterExcel" onAction="VersNummerUit"/>
             </mso:documentControls>
         </mso:qat>
     </mso:ribbon>
