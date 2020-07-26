@@ -65,6 +65,157 @@ function createSections(dest, config) {
     });
 }
 
+function paragraph(content) {
+    if (content === '') return '';
+    return `<a:p>
+                <a:pPr marL="0" indent="0">
+                    <a:lnSpc>
+                        <a:spcPct val="115000"/>
+                    </a:lnSpc>
+                </a:pPr>
+                ` + content + `
+            </a:p>`;
+}
+
+function blankLine() {
+    return paragraph(`<a:endParaRPr lang="nl-NL" sz="3500" b="1" dirty="0">
+                    <a:solidFill>
+                        <a:srgbClr val="FFFFFF"/>
+                    </a:solidFill>
+                    <a:effectLst>
+                        <a:prstShdw prst="shdw14" dist="35921" dir="2700000">
+                            <a:scrgbClr r="0" g="0" b="0">
+                                <a:alpha val="43000"/>
+                            </a:scrgbClr>
+                        </a:prstShdw>
+                    </a:effectLst>
+                    <a:latin typeface="Century Gothic" panose="020B0502020202020204" pitchFamily="34" charset="0"/>
+                </a:endParaRPr>`);
+}
+
+function heading(title) {
+    return paragraph(`<a:r>
+                <a:rPr lang="nl-NL" sz="4000" dirty="0">
+                    <a:solidFill>
+                        <a:srgbClr val="FFFFFF"/>
+                    </a:solidFill>
+                    <a:effectLst>
+                        <a:prstShdw prst="shdw14" dist="35921" dir="2700001">
+                            <a:scrgbClr r="0" g="0" b="0">
+                                <a:alpha val="43000"/>
+                            </a:scrgbClr>
+                        </a:prstShdw>
+                    </a:effectLst>
+                    <a:latin typeface="Century Gothic" panose="020B0502020202020204" pitchFamily="34" charset="0"/>
+                </a:rPr>
+                <a:t>` + title + `</a:t>
+            </a:r>`);
+}
+
+function verse(number) {
+    return `<a:r>
+                <a:rPr lang="nl-NL" sz="4000" b="1" baseline="30000" dirty="0">
+                    <a:solidFill>
+                        <a:srgbClr val="FFFFFF"/>
+                    </a:solidFill>
+                    <a:effectLst>
+                        <a:prstShdw prst="shdw14" dist="35921" dir="2700000">
+                            <a:scrgbClr r="0" g="0" b="0">
+                                <a:alpha val="43000"/>
+                            </a:scrgbClr>
+                        </a:prstShdw>
+                    </a:effectLst>
+                    <a:latin typeface="Century Gothic" panose="020B0502020202020204" pitchFamily="34" charset="0"/>
+                </a:rPr>
+                <a:t>` + number + ` </a:t>
+            </a:r>`;
+}
+
+function text(text) {
+    return `<a:r>
+                <a:rPr lang="nl-NL" sz="4000" b="1" dirty="0">
+                    <a:solidFill>
+                        <a:srgbClr val="FFFFFF"/>
+                    </a:solidFill>
+                    <a:effectLst>
+                        <a:prstShdw prst="shdw14" dist="35921" dir="2700000">
+                            <a:scrgbClr r="0" g="0" b="0">
+                                <a:alpha val="43000"/>
+                            </a:scrgbClr>
+                        </a:prstShdw>
+                    </a:effectLst>
+                    <a:latin typeface="Century Gothic" panose="020B0502020202020204" pitchFamily="34" charset="0"/>
+                </a:rPr>
+                <a:t>` + text + `</a:t>
+            </a:r>`
+}
+
+function createParagraphs(slide) {
+    let first = true;
+    let curPar = '';
+    let paragraphs = '';
+
+    for (let i = slide.fromChapter; i <= slide.toChapter; i++) {
+        let bookID = slide.book + '.' + i;
+        const fileName = './bijbel-database/' + bookID + '.json';
+        if (fs.existsSync(fileName)) {
+            const bookInfo = JSON.parse(fs.readFileSync(fileName, 'UTF-8'));
+            for (const [key, value] of Object.entries(bookInfo)) {
+                const j = parseInt(key);
+                if (i === slide.fromChapter && j < slide.fromVerse || i === slide.toChapter && j > slide.toVerse) {
+                    continue;
+                }
+                for (const part of value) {
+                    if (part.type === 'blank' && first) {
+                        continue;
+                    }
+                    if (part.type === 'heading' || part.type === 'blank' || part.startParagraph) {
+                        paragraphs += paragraph(curPar);
+                        curPar = '';
+                    }
+
+                    switch (part.type) {
+                        case 'heading':
+                            if (!first) {
+                                paragraphs += blankLine();
+                            }
+                            paragraphs += heading(part.text);
+                            break;
+                        case 'blank':
+                            paragraphs += blankLine();
+                            break;
+                        case 'text':
+                            curPar += text(part.text);
+                            break;
+                        case 'number':
+                            curPar += verse(part.text);
+                            break;
+                    }
+                    first = false;
+                }
+            }
+            paragraphs += paragraph(curPar);
+            curPar = '';
+        }
+    }
+
+    return paragraphs;
+}
+
+const boeken = JSON.parse(`{"GEN":"Genesis","EXO":"Exodus","LEV":"Leviticus","NUM":"Numeri","DEU":"Deuteronomium","JOS":"Jozua","JDG":"Rechters","RUT":"Ruth","1SA":"1 Samuel","2SA":"2 Samuel","1KI":"1 Koningen","2KI":"2 Koningen","1CH":"1 Kronieken","2CH":"2 Kronieken","EZR":"Ezra","NEH":"Nehemia","EST":"Ester","JOB":"Job","PSA":"Psalmen","PRO":"Spreuken","ECC":"Prediker","SNG":"Hooglied","ISA":"Jesaja","JER":"Jeremia","LAM":"Klaagliederen","EZK":"Ezechiël","DAN":"Daniël","HOS":"Hosea","JOL":"Joël","AMO":"Amos","OBA":"Obadja","JON":"Jona","MIC":"Micha","NAM":"Nahum","HAB":"Habakuk","ZEP":"Sefanja","HAG":"Haggai","ZEC":"Zacharia","MAL":"Maleachi","TOB":"Tobit","JDT":"Judit","ESG":"Ester (Gr.)","1MA":"1 Makkabeeën","2MA":"2 Makkabeeën","WIS":"Wijsheid","SIR":"Sirach","BAR":"Baruch","LJE":"Brief van Jeremia","DAG":"Daniël (Gr.)","MAN":"Manasse","MAT":"Matteüs","MRK":"Marcus","LUK":"Lucas","JHN":"Johannes","ACT":"Handelingen","ROM":"Romeinen","1CO":"1 Korintiërs","2CO":"2 Korintiërs","GAL":"Galaten","EPH":"Efeziërs","PHP":"Filippenzen","COL":"Kolossenzen","1TH":"1 Tessalonicenzen","2TH":"2 Tessalonicenzen","1TI":"1 Timoteüs","2TI":"2 Timoteüs","TIT":"Titus","PHM":"Filemon","HEB":"Hebreeën","JAS":"Jakobus","1PE":"1 Petrus","2PE":"2 Petrus","1JN":"1 Johannes","2JN":"2 Johannes","3JN":"3 Johannes","JUD":"Judas","REV":"Openbaring"}`);
+function createTextTitle(slide) {
+    if (!slide.book) {
+        return '';
+    }
+    return boeken[slide.book].replace('Psalmen', 'Psalm') + ' '
+        + slide.fromChapter + ' : ' + slide.fromVerse
+        + (parseInt(slide.fromChapter, 10) !== parseInt(slide.toChapter, 10) || parseInt(slide.fromVerse, 10) !== parseInt(slide.toVerse, 10) ?
+                ' - '
+                + (parseInt(slide.fromChapter, 10) !== parseInt(slide.toChapter, 10) ? slide.toChapter + ' : ' : '')
+                + slide.toVerse : ''
+        );
+}
+
 function createSlides(basis, dest, config, name, callback) {
     for (const slide of config.slides) {
         fs.copyFileSync(basis + '/ppt/slides/_rels/' + slide.type + '.xml.rels', dest + '/ppt/slides/_rels/slide' + slide.index + '.xml.rels');
@@ -76,11 +227,12 @@ function createSlides(basis, dest, config, name, callback) {
                 to: slide.title
             });
         } else if (slide.type === slideTypes.bijbeltekst) {
-            if (slide.text) {
+            if (slide.book) {
                 slide.title += ': ';
-            } else {
-                slide.text = '';
             }
+
+            const paragraphs = createParagraphs(slide);
+            const textTitle = createTextTitle(slide);
 
             replace.sync({
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
@@ -90,7 +242,12 @@ function createSlides(basis, dest, config, name, callback) {
             replace.sync({
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                 from: '{{tekst}}',
-                to: slide.text
+                to: textTitle
+            });
+            replace.sync({
+                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                from: '{{paragraphs}}',
+                to: paragraphs
             });
         } else if (slide.type === slideTypes.notenbalk) {
             let text = "";

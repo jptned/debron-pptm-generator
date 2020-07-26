@@ -16,7 +16,8 @@ function mapToSlide(part, ochtend, collectenGKv, collectenNGK) {
                 return [{type: slideTypes.notenbalk, title: part.title || 'Zingen', song: part.song || '', verses: []}];
             }
         case partTypes.bijbeltekst:
-            return [{type: slideTypes.bijbeltekst, title: part.title || 'Lezen', text: part.text}];
+            return [{type: slideTypes.bijbeltekst, title: part.title || 'Lezen', book: part.book,
+                fromChapter: part.fromChapter, toChapter: part.toChapter, fromVerse: part.fromVerse, toVerse: part.toVerse}];
         case partTypes.collecte:
             if (ochtend) {
                 return [{type: slideTypes.collecteOchtend, title: part.title || 'Collecte', collectenGKv: collectenGKv}];
