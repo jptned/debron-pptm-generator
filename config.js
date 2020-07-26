@@ -19,11 +19,7 @@ function mapToSlide(part, ochtend, collectenGKv, collectenNGK) {
             return [{type: slideTypes.bijbeltekst, title: part.title || 'Lezen', book: part.book,
                 fromChapter: part.fromChapter, toChapter: part.toChapter, fromVerse: part.fromVerse, toVerse: part.toVerse}];
         case partTypes.collecte:
-            if (ochtend) {
-                return [{type: slideTypes.collecteOchtend, title: part.title || 'Collecte', collectenGKv: collectenGKv}];
-            } else {
-                return [{type: slideTypes.collecteMiddag, collectenGKv: collectenGKv, collectenNGK: collectenNGK}];
-            }
+            return [{type: slideTypes.collecteMiddag, collectenGKv: collectenGKv, collectenNGK: collectenNGK}];
         case partTypes.zegen:
             return [{type: slideTypes.zegen, title: part.zegen || 'Zegen'}];
         default:
@@ -75,10 +71,10 @@ function createConfig(expandable, ochtend, thema, collectenGKv, collectenNGK) {
         slides: [
             {type: slideTypes.welkom, vooraf: true},
             {type: slideTypes.liturgie, vooraf: true},
-            {type: slideTypes.kerkdienstgemist, vooraf: true},
-            {type: slideTypes.parkeren, vooraf: true},
+            // {type: slideTypes.kerkdienstgemist, vooraf: true},
+            // {type: slideTypes.parkeren, vooraf: true},
             ...expandable.flatMap(x => mapWithEmpty(x, ochtend, collectenGKv, collectenNGK)),
-            {type: ochtend ? slideTypes.totZiensOchtend : slideTypes.totZiensMiddag, vooraf: false}
+            {type: /*ochtend ? slideTypes.totZiensOchtend :*/ slideTypes.totZiensMiddag, vooraf: false}
         ],
         liturgie: [
             ...expandable.flatMap(mapToLiturgie),

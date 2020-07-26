@@ -369,20 +369,20 @@ function createSlides(basis, dest, config, name, callback) {
                 to: slide.title,
             });
         } else if (slide.type === slideTypes.collecteMiddag) {
-            for (let i = 0; i < 4; i++) {
+            for (let i = 1; i <= 2; i++) {
                 replace.sync({
-                    files: dest + '/ppt/slideLayouts/slideLayout4.xml',
+                    files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                     from: '{{collecte-gkv-' + i + '}}',
-                    to: slide.collectenGKv[i]
+                    to: slide.collectenGKv[i-1]
                 });
             }
 
             if (slide.type === slideTypes.collecteMiddag) {
-                for (let i = 0; i < 4; i++) {
+                for (let i = 1; i <= 2; i++) {
                     replace.sync({
-                        files: dest + '/ppt/slideLayouts/slideLayout4.xml',
+                        files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                         from: '{{collecte-ngk-' + i + '}}',
-                        to: slide.collectenNGK[i]
+                        to: slide.collectenNGK[i-1]
                     });
                 }
             }
