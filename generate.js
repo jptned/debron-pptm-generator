@@ -6,6 +6,18 @@ const {slideTypes} = require('./slide-types');
 const path = require('path');
 const rmdir = require('rimraf');
 
+function escapeXml(unsafe) {
+    return unsafe.replace(/[<>&'"]/g, function (c) {
+        switch (c) {
+            case '<': return '&lt;';
+            case '>': return '&gt;';
+            case '&': return '&amp;';
+            case '\'': return '&apos;';
+            case '"': return '&quot;';
+        }
+    });
+}
+
 function createSlideReferences(dest, config) {
     let slideRefs = "";
     for (const slide of config.slides) {
@@ -108,7 +120,7 @@ function heading(title) {
                     </a:effectLst>
                     <a:latin typeface="Century Gothic" panose="020B0502020202020204" pitchFamily="34" charset="0"/>
                 </a:rPr>
-                <a:t>` + title + `</a:t>
+                <a:t>` + escapeXml(title) + `</a:t>
             </a:r>`);
 }
 
@@ -146,7 +158,7 @@ function text(text) {
                     </a:effectLst>
                     <a:latin typeface="Century Gothic" panose="020B0502020202020204" pitchFamily="34" charset="0"/>
                 </a:rPr>
-                <a:t>` + text + `</a:t>
+                <a:t>` + escapeXml(text) + `</a:t>
             </a:r>`
 }
 
@@ -224,7 +236,7 @@ function createSlides(basis, dest, config, name, callback) {
             replace.sync({
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                 from: '{{titel}}',
-                to: slide.title
+                to: escapeXml(slide.title)
             });
         } else if (slide.type === slideTypes.bijbeltekst) {
             if (slide.book) {
@@ -232,12 +244,12 @@ function createSlides(basis, dest, config, name, callback) {
             }
 
             const paragraphs = createParagraphs(slide);
-            const textTitle = createTextTitle(slide);
+            const textTitle = escapeXml(createTextTitle(slide));
 
             replace.sync({
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                 from: '{{titel}}',
-                to: slide.title
+                to: escapeXml(slide.title)
             });
             replace.sync({
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
@@ -269,7 +281,7 @@ function createSlides(basis, dest, config, name, callback) {
                     <a:cs typeface="Century Gothic"/>
                     <a:sym typeface="Gill Sans" charset="0"/>
                 </a:rPr>
-                <a:t>${slide.title + (slide.song.length ? ': ' : '')}</a:t>
+                <a:t>${escapeXml(slide.title) + (slide.song.length ? ': ' : '')}</a:t>
             </a:r>`;
             if (slide.song.length) {
                 text += `<a:r>
@@ -283,7 +295,7 @@ function createSlides(basis, dest, config, name, callback) {
                         <a:latin typeface="Century Gothic"/>
                         <a:cs typeface="Century Gothic"/>
                     </a:rPr>
-                    <a:t>${slide.song + (slide.verses.length ? ' : ' : '')}</a:t>
+                    <a:t>${escapeXml(slide.song) + (slide.verses.length ? ' : ' : '')}</a:t>
                 </a:r>`;
             }
             if (slide.verses.length) {
@@ -359,21 +371,21 @@ function createSlides(basis, dest, config, name, callback) {
                 replace.sync({
                     files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                     from: '{{collecte-' + i + '}}',
-                    to: slide.collectenGKv[i]
+                    to: escapeXml(slide.collectenGKv[i])
                 });
             }
 
             replace.sync({
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                 from: '{{titel}}',
-                to: slide.title,
+                to: escapeXml(slide.title),
             });
         } else if (slide.type === slideTypes.collecteMiddag) {
             for (let i = 1; i <= 2; i++) {
                 replace.sync({
                     files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                     from: '{{collecte-gkv-' + i + '}}',
-                    to: slide.collectenGKv[i-1]
+                    to: escapeXml(slide.collectenGKv[i-1])
                 });
             }
 
@@ -382,7 +394,7 @@ function createSlides(basis, dest, config, name, callback) {
                     replace.sync({
                         files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                         from: '{{collecte-ngk-' + i + '}}',
-                        to: slide.collectenNGK[i-1]
+                        to: escapeXml(slide.collectenNGK[i-1])
                     });
                 }
             }
@@ -390,18 +402,18 @@ function createSlides(basis, dest, config, name, callback) {
             replace.sync({
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                 from: '{{titel}}',
-                to: slide.title
+                to: escapeXml(slide.title)
             });
             replace.sync({
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                 from: '{{vredegroet}}',
-                to: slide.vredegroet
+                to: escapeXml(slide.vredegroet)
             });
         } else if (slide.type === slideTypes.zegen) {
             replace.sync({
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                 from: '{{titel}}',
-                to: slide.title
+                to: escapeXml(slide.title)
             });
         }
     }
@@ -432,7 +444,7 @@ function createSlideLayout(dest, config) {
                         <a:latin typeface="Century Gothic"/>
                         <a:cs typeface="Century Gothic"/>
                     </a:rPr>
-                    <a:t>${item}</a:t>
+                    <a:t>${escapeXml(item)}</a:t>
                 </a:r>
             </a:p>
         `;
