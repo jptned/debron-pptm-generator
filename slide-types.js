@@ -14,8 +14,8 @@ exports.slideTypes = {
     zegen: 'slide13',
     totZiensMiddag: 'slide14',
     totZiensOchtend: 'slide15',
-    ondertiteling: 'slide16',
-    ondertitelingTitel: 'slide17',
+    ondertitelingTitel: 'slide16',
+    ondertiteling: 'slide17',
 };
 
 exports.partTypes = {
