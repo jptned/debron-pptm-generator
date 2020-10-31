@@ -22,6 +22,31 @@ function mapToSlide(part, ochtend, collectenGKv, collectenNGK) {
             return [{type: slideTypes.collecteMiddag, collectenGKv: collectenGKv, collectenNGK: collectenNGK}];
         case partTypes.zegen:
             return [{type: slideTypes.zegen, title: part.zegen || 'Zegen'}];
+        case partTypes.ondertiteling:
+            const split = part.text.split(/\n/);
+            let curTexts = [];
+            let slides = [];
+            for (let text of split) {
+                // noinspection EqualityComparisonWithCoercionJS
+                if (text == false) {
+                    slides.push(curTexts);
+                    curTexts = [];
+                } else {
+                    if (curTexts.length >= 2) {
+                        slides.push(curTexts);
+                        curTexts = [];
+                    }
+                    curTexts.push(text);
+                }
+            }
+            if (curTexts.length) {
+                slides.push(curTexts);
+            }
+            slides.push([]);
+
+            return [{type: slideTypes.ondertitelingTitel, title: part.title, subTitle: part.subTitle}].concat(
+                slides.map(s => { return {type: slideTypes.ondertiteling, texts: s} })
+            );
         default:
             return [];
     }
@@ -59,6 +84,8 @@ function mapToLiturgie(part) {
             return [part.title || 'Collecte'];
         case partTypes.zegen:
             return [part.zegen || 'Zegen'];
+        case partTypes.ondertiteling:
+            return [part.title];
         default:
             return [];
     }

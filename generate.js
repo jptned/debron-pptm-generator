@@ -214,6 +214,10 @@ function createParagraphs(slide) {
     return paragraphs;
 }
 
+function ondertitelingsRegel(text) {
+    return `<a:p><a:r><a:rPr lang="nl-NL" dirty="0"/><a:t>` + escapeXml(text) + `</a:t></a:r></a:p>`;
+}
+
 const boeken = JSON.parse(`{"GEN":"Genesis","EXO":"Exodus","LEV":"Leviticus","NUM":"Numeri","DEU":"Deuteronomium","JOS":"Jozua","JDG":"Rechters","RUT":"Ruth","1SA":"1 Samuel","2SA":"2 Samuel","1KI":"1 Koningen","2KI":"2 Koningen","1CH":"1 Kronieken","2CH":"2 Kronieken","EZR":"Ezra","NEH":"Nehemia","EST":"Ester","JOB":"Job","PSA":"Psalmen","PRO":"Spreuken","ECC":"Prediker","SNG":"Hooglied","ISA":"Jesaja","JER":"Jeremia","LAM":"Klaagliederen","EZK":"Ezechiël","DAN":"Daniël","HOS":"Hosea","JOL":"Joël","AMO":"Amos","OBA":"Obadja","JON":"Jona","MIC":"Micha","NAM":"Nahum","HAB":"Habakuk","ZEP":"Sefanja","HAG":"Haggai","ZEC":"Zacharia","MAL":"Maleachi","TOB":"Tobit","JDT":"Judit","ESG":"Ester (Gr.)","1MA":"1 Makkabeeën","2MA":"2 Makkabeeën","WIS":"Wijsheid","SIR":"Sirach","BAR":"Baruch","LJE":"Brief van Jeremia","DAG":"Daniël (Gr.)","MAN":"Manasse","MAT":"Matteüs","MRK":"Marcus","LUK":"Lucas","JHN":"Johannes","ACT":"Handelingen","ROM":"Romeinen","1CO":"1 Korintiërs","2CO":"2 Korintiërs","GAL":"Galaten","EPH":"Efeziërs","PHP":"Filippenzen","COL":"Kolossenzen","1TH":"1 Tessalonicenzen","2TH":"2 Tessalonicenzen","1TI":"1 Timoteüs","2TI":"2 Timoteüs","TIT":"Titus","PHM":"Filemon","HEB":"Hebreeën","JAS":"Jakobus","1PE":"1 Petrus","2PE":"2 Petrus","1JN":"1 Johannes","2JN":"2 Johannes","3JN":"3 Johannes","JUD":"Judas","REV":"Openbaring"}`);
 function createTextTitle(slide) {
     if (!slide.book) {
@@ -414,6 +418,23 @@ function createSlides(basis, dest, config, name, callback) {
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                 from: '{{titel}}',
                 to: escapeXml(slide.title)
+            });
+        } else if (slide.type === slideTypes.ondertitelingTitel) {
+            replace.sync({
+                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                from: '{{titel}}',
+                to: escapeXml(slide.title)
+            });
+            replace.sync({
+                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                from: '{{subTitel}}',
+                to: escapeXml(slide.subTitle)
+            });
+        } else if (slide.type === slideTypes.ondertitelingTitel) {
+            replace.sync({
+                files: dest + '/ppt/slides/slide' + slide.index + '.xml',
+                from: '{{ondertiteling}}',
+                to: slide.texts.map(ondertitelingsRegel).join('')
             });
         }
     }

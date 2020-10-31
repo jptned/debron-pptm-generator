@@ -14,6 +14,8 @@ exports.slideTypes = {
     zegen: 'slide13',
     totZiensMiddag: 'slide14',
     totZiensOchtend: 'slide15',
+    ondertiteling: 'slide16',
+    ondertitelingTitel: 'slide17',
 };
 
 exports.partTypes = {
@@ -23,4 +25,5 @@ exports.partTypes = {
     bijbeltekst: 'bijbeltekst',
     collecte: 'collecte',
     zegen: 'zegen',
+    ondertiteling: 'ondertiteling',
 };
