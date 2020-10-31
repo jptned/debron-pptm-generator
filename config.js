@@ -25,7 +25,7 @@ function mapToSlide(part, ochtend, collectenGKv, collectenNGK) {
         case partTypes.ondertiteling:
             const split = part.text.split(/\n/);
             let curTexts = [];
-            let slides = [];
+            let slides = [[]];
             for (let text of split) {
                 // noinspection EqualityComparisonWithCoercionJS
                 if (text == false) {
