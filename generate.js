@@ -430,7 +430,7 @@ function createSlides(basis, dest, config, name, callback) {
                 from: '{{subTitel}}',
                 to: escapeXml(slide.subTitle)
             });
-        } else if (slide.type === slideTypes.ondertitelingTitel) {
+        } else if (slide.type === slideTypes.ondertiteling) {
             replace.sync({
                 files: dest + '/ppt/slides/slide' + slide.index + '.xml',
                 from: '{{ondertiteling}}',
